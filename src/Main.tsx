@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { EditHeaderProfileProps, HeaderProfileProps } from './types';
-import { Grid, Cell, ExpansionPanel, ExpansionList, Button, TextField } from 'react-md';
+import { Grid, Cell, ExpansionPanel, ExpansionList, Button, TextField, List, Subheader, ListItem, FontIcon } from 'react-md';
 import { TextFieldWrapper } from './Components/TextFieldWrapper';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
@@ -46,6 +46,8 @@ const EditProfessionalExperience = ({ myExperienceList, removeExperience, addExp
   return (
     <ExpansionList>
       <ExpansionPanel label="Edit Professional Experience" footer={null}>
+      <List className="md-cell md-paper md-paper--1" style={{ width: '100%'}}>
+        <Subheader primaryText="My Jobs" />
         {myExperienceList.map((exp, index) => (
             <ExperienceItem
               key={index}
@@ -54,7 +56,8 @@ const EditProfessionalExperience = ({ myExperienceList, removeExperience, addExp
               removeExperience={removeExperience}
             />
         ))}
-        {JSON.stringify(myExperienceList)}
+      </List>
+        {/* {JSON.stringify(myExperienceList)} */}
         <AddExperienceForm addExperience={addExperience} />
       </ExpansionPanel>
     </ExpansionList>
@@ -63,15 +66,11 @@ const EditProfessionalExperience = ({ myExperienceList, removeExperience, addExp
 
 // @ts-ignore
 export const ExperienceItem = ({ exp, index, removeExperience }) => (
-  <div
-    style={{ textDecoration: exp.isCompleted ? "line-through" : "" }}
-  >
-    <h3>{exp.company}</h3>
-    <p>{exp.description}</p>
-    <div>
-      <button onClick={() => removeExperience(index)}>x</button>
-    </div>
-  </div>
+  <ListItem
+      rightIcon={<FontIcon onClick={() => removeExperience(index)}>close</FontIcon>}
+      primaryText={exp.company}
+      secondaryText={exp.jobPosition}
+  />
 );
 
 type AddExperienceFormProps = {
@@ -79,13 +78,14 @@ type AddExperienceFormProps = {
 };
 
 export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) => {
+  const [jobPosition, setJobPosition] = useState('');
   const [company, setCompany] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
     if (!company && !description) return;
-    addExperience(company, description);
+    addExperience(jobPosition, company, description);
     setCompany('');
     setDescription('');
   };
@@ -93,18 +93,27 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
   return (
   <div>
       <TextField
+        style={{ width: '100%' }}
+        label="Position"
+        lineDirection="center"
+        className="md-cell md-cell--bottom"
+        value={jobPosition}
+        // @ts-ignore
+        onChange={value => setJobPosition(value)}
+      />
+      <TextField
+        style={{ width: '100%' }}
         label="Company"
         lineDirection="center"
         className="md-cell md-cell--bottom"
-        fullWidth
         value={company}
         // @ts-ignore
         onChange={value => setCompany(value)}
       />
       <TextField
+        style={{ width: '100%' }}
         label="Description"
         lineDirection="center"
-        fullWidth
         rows={15}
         className="md-cell md-cell--bottom"
         value={description}
@@ -117,7 +126,7 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
 };
 
 const Main = () => {
-  // react hooks for basic information (name/job title)
+  // react hooks for basic information like name/job title
   const [firstName, setFirstNameState] = useState<string>(INITIAL_VALUES.firstName);
   const [middleName, setMiddleName] = useState<string>(INITIAL_VALUES.middleName);
   const [lastName, setLastName] = useState<string>(INITIAL_VALUES.lastName);
@@ -127,22 +136,17 @@ const Main = () => {
   const [skills, setSkills] = useState<Array<{ name: string }>>(INITIAL_VALUES.skills);
 
   // react hooks for professional experience
-  const [professionalExperiences, setExperiences] = useState([
-    {
-      company: "Google",
-      description: 'N/A',
-    },
-  ]);
+  const [professionalExperiences, setExperiences] = useState(INITIAL_VALUES.professionalExperiences);
 
   // resume config object
   const resumeConfig = ({ firstName, middleName, lastName, jobTitle, professionalExperiences, skills });
 
-  const addExperience = (company: string, description='none') => {
-    const newExperience = [...professionalExperiences, { company, description }];
+  const addExperience = (jobPosition: string, company: string, description: string) => {
+    const newExperience = [...professionalExperiences, { jobPosition, company, description }];
     setExperiences(newExperience);
   };
-
-
+  
+  //@ts-ignore
   const removeExperience = index => {
     const updatedJobExperienceList = [...professionalExperiences];
     updatedJobExperienceList.splice(index, 1);
@@ -176,6 +180,7 @@ const Main = () => {
           lastName={lastName}
           jobTitle={jobTitle}
           skills={skills}
+          professionalExperiences={professionalExperiences}
         />
         <RenderResumeConfig config={resumeConfig} />
       </Cell>

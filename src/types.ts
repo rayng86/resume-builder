@@ -17,9 +17,19 @@ export type SkillsType = { name: string };
 
 export type SkillsProps = {
   skills: Array<SkillsType>,
-}
+};
 
-export type ResumeProps = HeaderProfileProps & SkillsProps;
+export type ProfessionalExperienceType = {
+  jobPosition: string,
+  company: string,
+  description: string,
+};
+
+export type ProfessionalExperienceProps = {
+  professionalExperiences: Array<ProfessionalExperienceType>,
+};
+
+export type ResumeProps = HeaderProfileProps & SkillsProps & ProfessionalExperienceProps;
   
 export type TextFieldWrapperProps = {
   value: string,

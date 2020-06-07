@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { ResumeProps } from '../types';
 import { Grid, Cell } from 'react-md';
@@ -11,6 +12,13 @@ export const ResumePreview = ({ ...rest }: ResumeProps) => (
       <HeaderProfile {...rest} />
       <Cell size={8}>
         <ResumeSubHeader label="Professional Experience" />
+        {_.map(rest.professionalExperiences, (exp) => (
+          <div>
+            <h3>{exp.jobPosition}</h3>
+            <p>{exp.company}</p>
+            <p>{exp.description}</p>
+          </div>
+        ))}
       </Cell>
       <Cell size={4}>
         <ResumeSkillsComponent skills={rest.skills} />
