@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { EditHeaderProfileProps, HeaderProfileProps } from './types';
-import { Grid, Cell, ExpansionPanel, ExpansionList } from 'react-md';
+import { Grid, Cell, ExpansionPanel, ExpansionList, Button, TextField } from 'react-md';
 import { TextFieldWrapper } from './Components/TextFieldWrapper';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
@@ -92,19 +92,26 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
 
   return (
   <div>
-      <input
-        type="text"
-        className="input"
+      <TextField
+        label="Company"
+        lineDirection="center"
+        className="md-cell md-cell--bottom"
+        fullWidth
         value={company}
-        onChange={e => setCompany(e.target.value)}
+        // @ts-ignore
+        onChange={value => setCompany(value)}
       />
-      <input
-        type="text"
-        className="input"
+      <TextField
+        label="Description"
+        lineDirection="center"
+        fullWidth
+        rows={15}
+        className="md-cell md-cell--bottom"
         value={description}
-        onChange={e => setDescription(e.target.value)}
+        // @ts-ignore
+        onChange={value => setDescription(value)}
       />
-      <button onClick={handleSubmit}>add</button>
+      <Button flat primary swapTheming onClick={handleSubmit}>Add</Button>
   </div>
   );
 };
