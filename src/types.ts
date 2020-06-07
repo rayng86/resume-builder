@@ -34,5 +34,9 @@ export type EditSkillsProps = {
 
 export type SkillsChipProps = {
   skill: SkillsType,
-  onClick: (val: SkillsType) => void;
+  onClick: (val: SkillsType) => void
+};
+
+export type ResumeSkillsComponentProps = {
+  skills: Array<SkillsType>,
 };

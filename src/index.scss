@@ -15,3 +15,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.resume-chip {
+  margin-right: 5px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid lightgrey;
+  color: grey !important;
+}
