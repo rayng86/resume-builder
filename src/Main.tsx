@@ -146,8 +146,7 @@ const Main = () => {
     setExperiences(newExperience);
   };
   
-  //@ts-ignore
-  const removeExperience = index => {
+  const removeExperience = (index: number) => {
     const updatedJobExperienceList = [...professionalExperiences];
     updatedJobExperienceList.splice(index, 1);
     setExperiences(updatedJobExperienceList);
