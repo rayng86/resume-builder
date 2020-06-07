@@ -5,7 +5,7 @@ export const INITIAL_VALUES: ResumeProps = {
   middleName: '',
   lastName: 'Ng',
   jobTitle: 'Software Engineer',
-  skills: [{ name: 'Javascript' }],
+  skills: [{ name: 'JavaScript' }],
 };
 
 export const PROGRAMMING_SOFTWARES = [

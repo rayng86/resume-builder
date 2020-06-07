@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { ExpansionPanel, ExpansionList, Autocomplete, Chip } from 'react-md';
-import { PROGRAMMING_LANGUAGES, OTHER, PROGRAMMING_SOFTWARES, FRAMEWORKS } from '../constants';
+import { PROGRAMMING_LANGUAGES, OTHER, PROGRAMMING_SOFTWARES, FRAMEWORKS, PROCEDURAL_EXTENSIONS } from '../constants';
 import { SkillsType, SkillsChipProps, EditSkillsProps } from '../types';
 
 export const SkillsChip = ({ skill, onClick } : SkillsChipProps) => {
@@ -16,7 +16,7 @@ export const SkillsChip = ({ skill, onClick } : SkillsChipProps) => {
     );
 };
 
-const consolidatedSkillsSet = _.concat([], PROGRAMMING_LANGUAGES, PROGRAMMING_SOFTWARES, FRAMEWORKS, OTHER);
+const consolidatedSkillsSet = _.concat([], PROGRAMMING_LANGUAGES, PROGRAMMING_SOFTWARES, FRAMEWORKS, PROCEDURAL_EXTENSIONS, OTHER);
 
 class SelectSkillsInput extends Component<EditSkillsProps> {
   state = { filteredSkills: consolidatedSkillsSet };
