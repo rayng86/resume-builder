@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { ExpansionPanel, ExpansionList, Autocomplete, Chip } from 'react-md';
-import { PROGRAMMING_LANGUAGES } from '../constants';
+import { PROGRAMMING_LANGUAGES, OTHER, PROGRAMMING_SOFTWARES, FRAMEWORKS } from '../constants';
 import { SkillsType, SkillsChipProps, EditSkillsProps } from '../types';
 
 export const SkillsChip = ({ skill, onClick } : SkillsChipProps) => {
@@ -16,12 +16,14 @@ export const SkillsChip = ({ skill, onClick } : SkillsChipProps) => {
     );
 };
 
+const consolidatedSkillsSet = _.concat([], PROGRAMMING_LANGUAGES, PROGRAMMING_SOFTWARES, FRAMEWORKS, OTHER);
+
 class SelectSkillsInput extends Component<EditSkillsProps> {
-  state = { filteredSkills: PROGRAMMING_LANGUAGES };
+  state = { filteredSkills: consolidatedSkillsSet };
 
   updateFilteredSkills = (selectedSkills: Array<{}>) => {
     this.setState({
-      filteredSkills: PROGRAMMING_LANGUAGES.filter(skill => selectedSkills.indexOf(skill) === -1),
+      filteredSkills: consolidatedSkillsSet.filter(skill => selectedSkills.indexOf(skill) === -1),
     });
   };
 

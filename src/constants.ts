@@ -8,6 +8,48 @@ export const INITIAL_VALUES: ResumeProps = {
   skills: [{ name: 'Javascript' }],
 };
 
+export const PROGRAMMING_SOFTWARES = [
+  { name: 'Adobe Photoshop' },
+  { name: 'Adobe Creative Suite' },
+  { name: 'Microsoft Word' },
+  { name: 'Microsoft Excel' },
+  { name: 'Terminal' },
+  { name: 'Sketch' },
+  { name: 'Zeplin' },
+];
+
+export const PROCEDURAL_EXTENSIONS = [
+  { name: 'MariaDB' },
+  { name: 'MySQL' },
+  { name: 'PostgresSQL' },
+];
+
+export const FRAMEWORKS = [
+  { name: 'Node.JS' },
+  { name: 'React' },
+  { name: 'ReactNative' },
+  { name: 'Redux' },
+  { name: 'AngularJS' },
+  { name: 'VueJS' },
+  { name: 'SocketIO' },
+  { name: 'NestJS' },
+  { name: 'ExpressJS' },
+  { name: 'SailsJS' },
+  { name: 'Koa.JS' },
+  { name: 'LoopBack' },
+  { name: 'Derby.JS' },
+  { name: 'Mean.io' },
+  { name: 'Restify.Js' },
+];
+
+export const OTHER = [
+  { name: 'Web Design' },
+  { name: 'Responsive Web Design' },
+  { name: 'Mobile' },
+  { name: 'RESTFUL API' },
+  { name: 'REST' },
+];
+
 export const PROGRAMMING_LANGUAGES = [
   { name: 'A Sharp (.NET)' },
   { name: 'A-0 System' },
