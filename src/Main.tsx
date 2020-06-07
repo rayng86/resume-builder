@@ -36,23 +36,112 @@ const EditHeaderProfile = ({
   );
 };
 
-const EditProfessionalExperience = () => {
+type EditProfessionalExperienceProps = {
+  myExperienceList: Array<{}>,
+  removeExperience: Function,
+  addExperience: Function,
+};
+
+const EditProfessionalExperience = ({ myExperienceList, removeExperience, addExperience } : EditProfessionalExperienceProps) => {
   return (
     <ExpansionList>
       <ExpansionPanel label="Edit Professional Experience" footer={null}>
-        Edit Professional Experience Placeholder
+        {myExperienceList.map((exp, index) => (
+            <ExperienceItem
+              key={index}
+              index={index}
+              exp={exp}
+              removeExperience={removeExperience}
+            />
+        ))}
+        {JSON.stringify(myExperienceList)}
+        <AddExperienceForm addExperience={addExperience} />
       </ExpansionPanel>
     </ExpansionList>
   );
 };
 
+// @ts-ignore
+export const ExperienceItem = ({ exp, index, removeExperience }) => (
+  <div
+    style={{ textDecoration: exp.isCompleted ? "line-through" : "" }}
+  >
+    <h3>{exp.company}</h3>
+    <p>{exp.description}</p>
+    <div>
+      <button onClick={() => removeExperience(index)}>x</button>
+    </div>
+  </div>
+);
+
+type AddExperienceFormProps = {
+  addExperience: Function,
+};
+
+export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) => {
+  const [company, setCompany] = useState('');
+  const [description, setDescription] = useState('');
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    if (!company && !description) return;
+    addExperience(company, description);
+    setCompany('');
+    setDescription('');
+  };
+
+  return (
+  <div>
+      <input
+        type="text"
+        className="input"
+        value={company}
+        onChange={e => setCompany(e.target.value)}
+      />
+      <input
+        type="text"
+        className="input"
+        value={description}
+        onChange={e => setDescription(e.target.value)}
+      />
+      <button onClick={handleSubmit}>add</button>
+  </div>
+  );
+};
+
 const Main = () => {
+  // react hooks for basic information (name/job title)
   const [firstName, setFirstNameState] = useState<string>(INITIAL_VALUES.firstName);
   const [middleName, setMiddleName] = useState<string>(INITIAL_VALUES.middleName);
   const [lastName, setLastName] = useState<string>(INITIAL_VALUES.lastName);
   const [jobTitle, setJobTitle] = useState<string>(INITIAL_VALUES.jobTitle);
+
+  // react hooks for skills
   const [skills, setSkills] = useState<Array<{ name: string }>>(INITIAL_VALUES.skills);
-  const resumeConfig = ({ firstName, middleName, lastName, jobTitle, skills });
+
+  // react hooks for professional experience
+  const [professionalExperiences, setExperiences] = useState([
+    {
+      company: "Google",
+      description: 'N/A',
+    },
+  ]);
+
+  // resume config object
+  const resumeConfig = ({ firstName, middleName, lastName, jobTitle, professionalExperiences, skills });
+
+  const addExperience = (company: string, description='none') => {
+    const newExperience = [...professionalExperiences, { company, description }];
+    setExperiences(newExperience);
+  };
+
+
+  const removeExperience = index => {
+    const updatedJobExperienceList = [...professionalExperiences];
+    updatedJobExperienceList.splice(index, 1);
+    setExperiences(updatedJobExperienceList);
+  };
+
   return (
     <Grid>
       <Cell size={4}>
@@ -66,7 +155,11 @@ const Main = () => {
           jobTitle={jobTitle}
           setJobTitle={setJobTitle}
         />
-        <EditProfessionalExperience />
+        <EditProfessionalExperience
+          addExperience={addExperience}
+          removeExperience={removeExperience}
+          myExperienceList={professionalExperiences}
+        />
         <EditSkills skills={skills} setSkills={setSkills} />
       </Cell>
       <Cell size={8}>
