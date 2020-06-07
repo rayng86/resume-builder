@@ -3,7 +3,7 @@ import { ResumeProps } from '../types';
 import { Grid, Cell } from 'react-md';
 import { HeaderProfile } from '../Main';
 
-export const ResumePreviewContainer = ({ ...rest }: ResumeProps) => (
+export const ResumePreview = ({ ...rest }: ResumeProps) => (
   <div style={{ background: 'white', border: '1px solid lightgrey' }}>
     <Grid className="resume-container">
       <HeaderProfile {...rest} />

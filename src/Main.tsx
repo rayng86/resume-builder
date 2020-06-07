@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { EditHeaderProfileProps, HeaderProfileProps, ResumeProps } from './types';
 import { Grid, Cell, ExpansionPanel, ExpansionList } from 'react-md';
 import { TextFieldWrapper } from './Components/TextFieldWrapper';
-import { ResumePreviewContainer } from './Components/ResumePreviewComponent';
+import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
 import { RenderResumeConfig } from './RenderResumeConfigProps';
 
@@ -78,7 +78,7 @@ const Main = () => {
         <EditSkills />
       </Cell>
       <Cell size={8}>
-        <ResumePreviewContainer
+        <ResumePreview
           firstName={firstName}
           middleName={middleName}
           lastName={lastName}
