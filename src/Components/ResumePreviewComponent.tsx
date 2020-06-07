@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { ResumeProps } from '../types';
 import { Grid, Cell } from 'react-md';
@@ -8,7 +9,7 @@ export const ResumePreview = ({ ...rest }: ResumeProps) => (
     <Grid className="resume-container">
       <HeaderProfile {...rest} />
       <Cell size={8}>8</Cell>
-      <Cell size={4}>4</Cell>
+      <Cell size={4}>{_.map(rest.skills, skill => skill.name)}</Cell>
     </Grid>
   </div>
 );

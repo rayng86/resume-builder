@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { EditHeaderProfileProps, HeaderProfileProps, ResumeProps } from './types';
+import { EditHeaderProfileProps, HeaderProfileProps } from './types';
 import { Grid, Cell, ExpansionPanel, ExpansionList } from 'react-md';
 import { TextFieldWrapper } from './Components/TextFieldWrapper';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
 import { RenderResumeConfig } from './RenderResumeConfigProps';
+import { EditSkills } from './Components/EditSkills';
 
 export const HeaderProfile = ({ firstName, middleName, lastName, jobTitle } : HeaderProfileProps) => (
   <Cell size={12}>
@@ -22,7 +23,7 @@ const EditHeaderProfile = ({
   setLastName,
   jobTitle,
   setJobTitle,
-}: ResumeProps & EditHeaderProfileProps) => {
+}: HeaderProfileProps & EditHeaderProfileProps) => {
   return (
     <ExpansionList>
       <ExpansionPanel label="Edit Full Name and Job Title" footer={null}>
@@ -45,22 +46,13 @@ const EditProfessionalExperience = () => {
   );
 };
 
-const EditSkills = () => {
-  return (
-    <ExpansionList>
-      <ExpansionPanel label="Edit Skills" footer={null}>
-        Edit Skills Placeholder
-      </ExpansionPanel>
-    </ExpansionList>
-  );
-};
-
 const Main = () => {
   const [firstName, setFirstNameState] = useState<string>(INITIAL_VALUES.firstName);
   const [middleName, setMiddleName] = useState<string>(INITIAL_VALUES.middleName);
   const [lastName, setLastName] = useState<string>(INITIAL_VALUES.lastName);
   const [jobTitle, setJobTitle] = useState<string>(INITIAL_VALUES.jobTitle);
-  const resumeConfig = ({ firstName, middleName, lastName, jobTitle });
+  const [skills, setSkills] = useState<Array<{ name: string }>>(INITIAL_VALUES.skills);
+  const resumeConfig = ({ firstName, middleName, lastName, jobTitle, skills });
   return (
     <Grid>
       <Cell size={4}>
@@ -75,7 +67,7 @@ const Main = () => {
           setJobTitle={setJobTitle}
         />
         <EditProfessionalExperience />
-        <EditSkills />
+        <EditSkills skills={skills} setSkills={setSkills} />
       </Cell>
       <Cell size={8}>
         <ResumePreview
@@ -83,6 +75,7 @@ const Main = () => {
           middleName={middleName}
           lastName={lastName}
           jobTitle={jobTitle}
+          skills={skills}
         />
         <RenderResumeConfig config={resumeConfig} />
       </Cell>
