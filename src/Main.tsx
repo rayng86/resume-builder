@@ -9,7 +9,7 @@ import { EditSkills } from './Components/EditSkills';
 
 export const HeaderProfile = ({ firstName, middleName, lastName, jobTitle } : HeaderProfileProps) => (
   <Cell size={12}>
-    <h2>{firstName} {middleName} {lastName}</h2>
+    <h1>{firstName} {middleName} {lastName}</h1>
     <span>{jobTitle}</span>
   </Cell>
 );
