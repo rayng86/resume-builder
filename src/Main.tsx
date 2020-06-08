@@ -84,8 +84,9 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    if (!company && !description) return;
+    if (jobPosition === '' || company === '') return;
     addExperience(jobPosition, company, description);
+    setJobPosition('');
     setCompany('');
     setDescription('');
   };
