@@ -27,10 +27,12 @@ const EditHeaderProfile = ({
   return (
     <ExpansionList>
       <ExpansionPanel label="Edit Full Name and Job Title" footer={null}>
-        <TextFieldWrapper label="First Name" value={firstName} func={setFirstNameState} />
-        <TextFieldWrapper label="Middle Name" value={middleName} func={setMiddleName} />
-        <TextFieldWrapper label="Last Name" value={lastName} func={setLastName} />
-        <TextFieldWrapper label="Job Title" value={jobTitle} func={setJobTitle} />
+        <Grid style={{ padding: 0 }}>
+          <TextFieldWrapper label="First Name" value={firstName} func={setFirstNameState} />
+          <TextFieldWrapper label="Middle Name" value={middleName} func={setMiddleName} />
+          <TextFieldWrapper label="Last Name" value={lastName} func={setLastName} />
+          <TextFieldWrapper label="Job Title" value={jobTitle} func={setJobTitle} />
+        </Grid>
       </ExpansionPanel>
     </ExpansionList>
   );
@@ -46,7 +48,9 @@ const EditProfessionalExperience = ({ myExperienceList, removeExperience, addExp
   return (
     <ExpansionList>
       <ExpansionPanel label="Edit Professional Experience" footer={null}>
-      <List className="md-cell md-paper md-paper--1" style={{ width: '100%'}}>
+        {/* {JSON.stringify(myExperienceList)} */}
+        <AddExperienceForm addExperience={addExperience} />
+        <List className="md-cell md-paper md-paper--1" style={{ width: '100%', margin: '20px 0' }}>
         <Subheader primaryText="My Jobs" />
         {myExperienceList.map((exp, index) => (
             <ExperienceItem
@@ -57,8 +61,6 @@ const EditProfessionalExperience = ({ myExperienceList, removeExperience, addExp
             />
         ))}
       </List>
-        {/* {JSON.stringify(myExperienceList)} */}
-        <AddExperienceForm addExperience={addExperience} />
       </ExpansionPanel>
     </ExpansionList>
   );
@@ -133,7 +135,7 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
         style={{ width: '100%' }}
         label="Description"
         lineDirection="center"
-        rows={15}
+        rows={5}
         className="md-cell md-cell--bottom"
         value={description}
         // @ts-ignore
