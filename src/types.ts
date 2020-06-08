@@ -34,6 +34,7 @@ export type ProfessionalExperienceProps = {
 export type ResumeProps = HeaderProfileProps & SkillsProps & ProfessionalExperienceProps;
   
 export type TextFieldWrapperProps = {
+  style?: {},
   value: string,
   func: Function,
   label: string,

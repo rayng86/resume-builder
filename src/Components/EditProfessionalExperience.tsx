@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ListItem, FontIcon, ExpansionList, ExpansionPanel, List, Subheader, Grid, TextField, Button, DatePicker } from 'react-md';
 import { ExperienceItemProps, AddExperienceFormProps, EditProfessionalExperienceProps } from '../types';
+import { TextFieldWrapper } from './TextFieldWrapper';
 
-export const EditProfessionalExperience = ({ myExperienceList, removeExperience, addExperience } : EditProfessionalExperienceProps) => {
+export const EditProfessionalExperience = (
+  { myExperienceList, removeExperience, addExperience } : EditProfessionalExperienceProps) => {
   return (
     <ExpansionList>
       <ExpansionPanel label="Edit Professional Experience" footer={null}>
@@ -50,38 +52,22 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
 
   return (
     <div>
-        <TextField
-          style={{ width: '100%' }}
-          label="Position"
-          lineDirection="center"
-          className="md-cell md-cell--bottom"
-          value={jobPosition}
-          // @ts-ignore
-          onChange={value => setJobPosition(value)}
-        />
-        <TextField
-          style={{ width: '100%' }}
-          label="Company"
-          lineDirection="center"
-          className="md-cell md-cell--bottom"
-          value={company}
-          // @ts-ignore
-          onChange={value => setCompany(value)}
-        />
+        <TextFieldWrapper style={{ width: '100%' }} label="Position" value={jobPosition} func={setJobPosition} />
+        <TextFieldWrapper style={{ width: '100%' }} label="Company" value={company} func={setCompany} />
         <Grid style={{ padding: 0 }}>
           <DatePicker
             id="start-date"
             label="Start Date"
             className="md-cell"
             inline
-            onChange={(dateString, dateObject, event) => setStartDate(dateString)}
+            onChange={(dateString) => setStartDate(dateString)}
           />
           <DatePicker
             id="end-date"
             label="End Date"
             className="md-cell"
             inline
-            onChange={(dateString, dateObject, event) => setEndDate(dateString)}
+            onChange={(dateString) => setEndDate(dateString)}
           />
         </Grid>
         <TextField
