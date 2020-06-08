@@ -120,14 +120,14 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
           id="start-date"
           label="Start Date"
           className="md-cell"
-          fullWidth
+          inline
           onChange={(dateString, dateObject, event) => setStartDate(dateString)}
         />
         <DatePicker
           id="end-date"
           label="End Date"
           className="md-cell"
-          fullWidth
+          inline
           onChange={(dateString, dateObject, event) => setEndDate(dateString)}
         />
       </Grid>
