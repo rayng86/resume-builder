@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { ListItem, FontIcon, ExpansionList, ExpansionPanel, List, Subheader, Grid, TextField, Button, DatePicker } from 'react-md';
+import { ListItem, FontIcon, ExpansionList, ExpansionPanel, List, Subheader, Grid, TextField, Button } from 'react-md';
 import { ExperienceItemProps, AddExperienceFormProps, EditProfessionalExperienceProps } from '../types';
-import { TextFieldWrapper } from './TextFieldWrapper';
+import { TextFieldWrapper, DatePickerWrapper } from './Wrappers';
 
 export const EditProfessionalExperience = (
   { myExperienceList, removeExperience, addExperience } : EditProfessionalExperienceProps) => {
@@ -55,18 +55,14 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
         <TextFieldWrapper style={{ width: '100%' }} label="Position" value={jobPosition} func={setJobPosition} />
         <TextFieldWrapper style={{ width: '100%' }} label="Company" value={company} func={setCompany} />
         <Grid style={{ padding: 0 }}>
-          <DatePicker
+          <DatePickerWrapper
             id="start-date"
             label="Start Date"
-            className="md-cell"
-            inline
             onChange={(dateString) => setStartDate(dateString)}
           />
-          <DatePicker
+          <DatePickerWrapper
             id="end-date"
             label="End Date"
-            className="md-cell"
-            inline
             onChange={(dateString) => setEndDate(dateString)}
           />
         </Grid>

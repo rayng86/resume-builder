@@ -40,6 +40,12 @@ export type TextFieldWrapperProps = {
   label: string,
 };
 
+export type DatePickerWrapperProps = {
+  id: string,
+  label: string,
+  onChange: (formattedDate: string, date: Date, event: Event) => void,
+};
+
 export type EditSkillsProps = {
   skills: Array<SkillsType>,
   setSkills: (val: Array<SkillsType>) => void,

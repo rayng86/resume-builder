@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { EditHeaderProfileProps, HeaderProfileProps } from './types';
 import { Grid, Cell, ExpansionPanel, ExpansionList } from 'react-md';
-import { TextFieldWrapper } from './Components/TextFieldWrapper';
+import { TextFieldWrapper } from './Components/Wrappers';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
 import { RenderResumeConfig } from './RenderResumeConfigProps';
