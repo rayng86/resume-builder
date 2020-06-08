@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { EditHeaderProfileProps, HeaderProfileProps } from './types';
-import { Grid, Cell, ExpansionPanel, ExpansionList, Button, TextField, List, Subheader, ListItem, FontIcon } from 'react-md';
+import { Grid, Cell, ExpansionPanel, ExpansionList, Button, TextField, List, Subheader, ListItem, FontIcon, DatePicker } from 'react-md';
 import { TextFieldWrapper } from './Components/TextFieldWrapper';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
@@ -81,11 +81,13 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
   const [jobPosition, setJobPosition] = useState('');
   const [company, setCompany] = useState('');
   const [description, setDescription] = useState('');
-
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  
   const handleSubmit = (event: any) => {
     event.preventDefault();
     if (jobPosition === '' || company === '') return;
-    addExperience(jobPosition, company, description);
+    addExperience(jobPosition, company, startDate, endDate, description);
     setJobPosition('');
     setCompany('');
     setDescription('');
@@ -111,6 +113,22 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
         // @ts-ignore
         onChange={value => setCompany(value)}
       />
+      <Grid style={{ padding: 0 }}>
+        <DatePicker
+          id="start-date"
+          label="Start Date"
+          className="md-cell"
+          fullWidth
+          onChange={(dateString, dateObject, event) => setStartDate(dateString)}
+        />
+        <DatePicker
+          id="end-date"
+          label="End Date"
+          className="md-cell"
+          fullWidth
+          onChange={(dateString, dateObject, event) => setEndDate(dateString)}
+        />
+      </Grid>
       <TextField
         style={{ width: '100%' }}
         label="Description"
@@ -142,8 +160,8 @@ const Main = () => {
   // resume config object
   const resumeConfig = ({ firstName, middleName, lastName, jobTitle, professionalExperiences, skills });
 
-  const addExperience = (jobPosition: string, company: string, description: string) => {
-    const newExperience = [...professionalExperiences, { jobPosition, company, description }];
+  const addExperience = (jobPosition: string, company: string, startDate: string, endDate: string, description: string) => {
+    const newExperience = [...professionalExperiences, { jobPosition, company, startDate, endDate, description }];
     setExperiences(newExperience);
   };
   

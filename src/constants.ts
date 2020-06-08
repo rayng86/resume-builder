@@ -7,7 +7,8 @@ export const INITIAL_VALUES: ResumeProps = {
   jobTitle: 'Software Engineer',
   professionalExperiences: [{
     jobPosition: 'Software Engineer',
-    company: "Google",
+    company: 'Google',
+    startDate: '11/05/2020',
     description: 'N/A',
   }],
   skills: [{ name: 'JavaScript' }],

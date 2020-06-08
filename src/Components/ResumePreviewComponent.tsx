@@ -16,6 +16,7 @@ export const ResumePreview = ({ ...rest }: ResumeProps) => (
           <div>
             <h3>{exp.jobPosition}</h3>
             <p>{exp.company}</p>
+            <p>{exp.startDate} - {exp.endDate ? exp.endDate : 'Present'}</p>
             <p>{exp.description}</p>
           </div>
         ))}
