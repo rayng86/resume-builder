@@ -52,3 +52,19 @@ export type SkillsChipProps = {
 export type ResumeSkillsComponentProps = {
   skills: Array<SkillsType>,
 };
+
+export type EditProfessionalExperienceProps = {
+  myExperienceList: Array<ProfessionalExperienceType>,
+  removeExperience: Function,
+  addExperience: Function,
+};
+
+export type ExperienceItemProps = {
+  exp: ProfessionalExperienceType,
+  index: number,
+  removeExperience: Function,
+};
+
+export type AddExperienceFormProps = {
+  addExperience: Function,
+};
