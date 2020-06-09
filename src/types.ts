@@ -17,14 +17,33 @@ export type SkillsType = { name: string };
 
 export type SkillsProps = {
   skills: Array<SkillsType>,
-}
+};
 
-export type ResumeProps = HeaderProfileProps & SkillsProps;
+export type ProfessionalExperienceType = {
+  jobPosition: string,
+  company: string,
+  startDate: string,
+  endDate?: string,
+  description: string,
+};
+
+export type ProfessionalExperienceProps = {
+  professionalExperiences: Array<ProfessionalExperienceType>,
+};
+
+export type ResumeProps = HeaderProfileProps & SkillsProps & ProfessionalExperienceProps;
   
 export type TextFieldWrapperProps = {
+  style?: {},
   value: string,
   func: Function,
   label: string,
+};
+
+export type DatePickerWrapperProps = {
+  id: string,
+  label: string,
+  onChange: (formattedDate: string, date: Date, event: Event) => void,
 };
 
 export type EditSkillsProps = {
@@ -39,4 +58,24 @@ export type SkillsChipProps = {
 
 export type ResumeSkillsComponentProps = {
   skills: Array<SkillsType>,
+};
+
+export type EditProfessionalExperienceProps = {
+  myExperienceList: Array<ProfessionalExperienceType>,
+  removeExperience: Function,
+  addExperience: Function,
+  setExperience: Function,
+};
+
+export type ExperienceItemProps = {
+  exp: ProfessionalExperienceType,
+  index: number,
+  removeExperience: Function,
+  myExperienceListSize: number,
+  up: Function,
+  down: Function,
+};
+
+export type AddExperienceFormProps = {
+  addExperience: Function,
 };

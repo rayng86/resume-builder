@@ -2,6 +2,7 @@
   "name": "resume-builder",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://rayng86.github.io/resume-builder",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -10,6 +11,8 @@
     "@types/node": "^12.12.44",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "array-move": "^2.2.2",
+    "gh-pages": "^3.0.0",
     "lodash": "^4.17.15",
     "node-sass-chokidar": "^1.4.0",
     "react": "^16.13.1",
@@ -26,7 +29,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
-    "watch-css": "npm run build-css && npm run build-css -- --watch --recursive"
+    "watch-css": "npm run build-css && npm run build-css -- --watch --recursive",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
