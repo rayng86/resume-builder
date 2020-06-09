@@ -1,5 +1,7 @@
 # Resume Builder
 
+![image](https://user-images.githubusercontent.com/74542/84167053-bd14a900-aa43-11ea-8c5d-9b523122eac0.png)
+
 A simple resume building tool made with react I built over the weekend during my free time. Most of these types of services you have to pay to use and aren't free so decided to build my own.
 https://rayng86.github.io/resume-builder/
 
