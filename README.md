@@ -1,4 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Resume Builder
+
+A simple resume building tool made with react I built over the weekend during my free time. Most of these types of services you have to pay to use and aren't free so decided to build my own.
+https://rayng86.github.io/resume-builder/
+
+### TODOS:
+- ability to save as pdf
+- ability to save resume json config to load saved settings
+- ability to re-edit existing professional experience items.
+- More configurable resume sections (add phone, email, languages, awards, etc.) coming soon.
 
 ## Available Scripts
 
