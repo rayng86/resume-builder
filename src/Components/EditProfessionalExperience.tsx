@@ -97,8 +97,8 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
 
   return (
     <div>
-        <TextFieldWrapper style={{ width: '100%' }} label="Position" value={jobPosition} func={setJobPosition} />
         <TextFieldWrapper style={{ width: '100%' }} label="Company" value={company} func={setCompany} />
+        <TextFieldWrapper style={{ width: '100%' }} label="Job Position" value={jobPosition} func={setJobPosition} />
         <Grid style={{ padding: 0 }}>
           <DatePickerWrapper
             id="start-date"
