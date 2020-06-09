@@ -1,43 +1,11 @@
 import React, { useState } from 'react';
-import { EditHeaderProfileProps, HeaderProfileProps } from './types';
-import { Grid, Cell, ExpansionPanel, ExpansionList } from 'react-md';
-import { TextFieldWrapper } from './Components/Wrappers';
+import { Grid, Cell } from 'react-md';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
 import { RenderResumeConfig } from './RenderResumeConfigProps';
 import { EditSkills } from './Components/EditSkills';
 import { EditProfessionalExperience } from './Components/EditProfessionalExperience';
-
-export const HeaderProfile = ({ firstName, middleName, lastName, jobTitle } : HeaderProfileProps) => (
-  <Cell size={12}>
-    <h1>{firstName} {middleName} {lastName}</h1>
-    <span>{jobTitle}</span>
-  </Cell>
-);
-
-const EditHeaderProfile = ({
-  firstName,
-  setFirstNameState,
-  middleName,
-  setMiddleName,
-  lastName,
-  setLastName,
-  jobTitle,
-  setJobTitle,
-}: HeaderProfileProps & EditHeaderProfileProps) => {
-  return (
-    <ExpansionList>
-      <ExpansionPanel label="Edit Full Name and Job Title" footer={null}>
-        <Grid style={{ padding: 0 }}>
-          <TextFieldWrapper label="First Name" value={firstName} func={setFirstNameState} />
-          <TextFieldWrapper label="Middle Name" value={middleName} func={setMiddleName} />
-          <TextFieldWrapper label="Last Name" value={lastName} func={setLastName} />
-          <TextFieldWrapper label="Job Title" value={jobTitle} func={setJobTitle} />
-        </Grid>
-      </ExpansionPanel>
-    </ExpansionList>
-  );
-};
+import EditHeaderProfile from './Components/EditHeaderProfile';
 
 const Main = () => {
   // react hooks for basic information like name/job title

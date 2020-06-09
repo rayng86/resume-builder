@@ -1,9 +1,9 @@
 import React from 'react';
 import { ResumeProps } from '../types';
 import { Grid, Cell } from 'react-md';
-import { HeaderProfile } from '../Main';
 import { ResumeSkillsComponent } from './ResumeSkillsComponent';
 import { ResumeProfessionalExperience } from './ResumeProfessionalExperience';
+import HeaderProfile from './ResumeHeaderProfileComponent';
 
 export const ResumePreview = ({ ...rest }: ResumeProps) => (
   <div style={{ background: 'white', border: '1px solid lightgrey' }}>
