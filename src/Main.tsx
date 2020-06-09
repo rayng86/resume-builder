@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Cell } from 'react-md';
+import { Grid, Cell, CardText, Card, CardTitle } from 'react-md';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
 import { RenderResumeConfig } from './RenderResumeConfigProps';
@@ -37,6 +37,14 @@ const Main = () => {
   return (
     <Grid>
       <Cell size={4}>
+        <Card className="md-block-centered">
+          <CardTitle title="Resume Template Builder" subtitle="created by Raymond Ng" />
+          <CardText>
+            <p>
+              a simple tool for laying and building out a resume template.
+            </p>
+          </CardText>
+        </Card>
         <EditHeaderProfile
           firstName={firstName}
           setFirstNameState={setFirstNameState}

@@ -5,7 +5,7 @@ import Main from './Main';
 function App() {
   return (
     <div className="App">
-      <NavigationDrawer drawerTitle="Navigation" toolbarTitle="Resume Builder">
+      <NavigationDrawer drawerTitle="Navigation">
         <Main />
       </NavigationDrawer>
     </div>
