@@ -1,10 +1,26 @@
+import _ from 'lodash';
 import React, { useState } from 'react';
+import arrayMove from 'array-move';
 import { ListItem, FontIcon, ExpansionList, ExpansionPanel, List, Subheader, Grid, TextField, Button } from 'react-md';
 import { ExperienceItemProps, AddExperienceFormProps, EditProfessionalExperienceProps } from '../types';
 import { TextFieldWrapper, DatePickerWrapper } from './Wrappers';
 
 export const EditProfessionalExperience = (
-  { myExperienceList, removeExperience, addExperience } : EditProfessionalExperienceProps) => {
+  { myExperienceList, removeExperience, addExperience, setExperience } : EditProfessionalExperienceProps) => {
+  const myExperienceListSize = _.size(myExperienceList);
+
+  const up = (index: number) => {
+    if (index === 0) return;
+    const newList = arrayMove(myExperienceList, index, index - 1);
+    setExperience(newList);
+  }
+
+  const down = (index: number) => {
+    if ((index + 1) === myExperienceListSize) return;
+    const newList = arrayMove(myExperienceList, index, index + 1);
+    setExperience(newList);
+  }
+
   return (
     <ExpansionList>
       <ExpansionPanel label="Edit Professional Experience" footer={null}>
@@ -17,7 +33,10 @@ export const EditProfessionalExperience = (
               key={index}
               index={index}
               exp={exp}
+              myExperienceListSize={myExperienceListSize }
               removeExperience={removeExperience}
+              up={up}
+              down={down}
             />
         ))}
       </List>
@@ -26,13 +45,39 @@ export const EditProfessionalExperience = (
   );
 };
 
-export const ExperienceItem = ({ exp, index, removeExperience } : ExperienceItemProps) => (
-  <ListItem
-      rightIcon={<FontIcon onClick={() => removeExperience(index)}>close</FontIcon>}
-      primaryText={exp.company}
-      secondaryText={exp.jobPosition}
-  />
-);
+export const ExperienceItem = ({ exp, index, removeExperience, myExperienceListSize, up, down } : ExperienceItemProps) => {
+  const disabledReordering = myExperienceListSize > 1;
+  return (
+    <ListItem
+        rightIcon={<>
+          <FontIcon
+            secondary
+            disabled={!disabledReordering || index === 0}
+            forceFontSize
+            onClick={() => up(index)}
+            >
+              arrow_drop_up
+          </FontIcon>
+          <FontIcon
+            secondary
+            disabled={!disabledReordering || (index + 1) === myExperienceListSize}
+            forceFontSize
+            onClick={() => down(index)}
+          >
+            arrow_drop_down
+          </FontIcon>
+          <FontIcon
+            secondary
+            onClick={() => removeExperience(index)}
+            >
+              close
+          </FontIcon>
+        </>}
+        primaryText={exp.company}
+        secondaryText={exp.jobPosition}
+    />
+  );
+};
 
 export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) => {
   const [jobPosition, setJobPosition] = useState('');

@@ -83,6 +83,7 @@ const Main = () => {
           addExperience={addExperience}
           removeExperience={removeExperience}
           myExperienceList={professionalExperiences}
+          setExperience={setExperiences}
         />
         <EditSkills skills={skills} setSkills={setSkills} />
       </Cell>

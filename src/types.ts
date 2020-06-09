@@ -64,12 +64,16 @@ export type EditProfessionalExperienceProps = {
   myExperienceList: Array<ProfessionalExperienceType>,
   removeExperience: Function,
   addExperience: Function,
+  setExperience: Function,
 };
 
 export type ExperienceItemProps = {
   exp: ProfessionalExperienceType,
   index: number,
   removeExperience: Function,
+  myExperienceListSize: number,
+  up: Function,
+  down: Function,
 };
 
 export type AddExperienceFormProps = {
