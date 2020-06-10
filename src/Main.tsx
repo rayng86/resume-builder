@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Cell, CardText, Card, CardTitle } from 'react-md';
+import { Grid, Cell, CardText, Card, CardTitle, Button } from 'react-md';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
 import { RenderResumeConfig } from './RenderResumeConfigProps';
@@ -32,6 +32,22 @@ const Main = () => {
     const updatedJobExperienceList = [...professionalExperiences];
     updatedJobExperienceList.splice(index, 1);
     setExperiences(updatedJobExperienceList);
+  };
+
+  const download = () => {
+    var element = document.createElement('a');
+    const jsonObjStr = JSON.stringify(resumeConfig, null, ' ');
+    const d = new Date();
+    const dateStr = `${d.getDay()}-${d.getDate()}-${d.getFullYear()}`;
+    element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(jsonObjStr));
+    element.setAttribute('download', `my-resume-${dateStr}.json`);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
   };
 
   return (
@@ -73,6 +89,7 @@ const Main = () => {
           professionalExperiences={professionalExperiences}
         />
         <RenderResumeConfig config={resumeConfig} />
+        <Button flat primary onClick={download}>Save JSON Config</Button>
       </Cell>
     </Grid>
   );
