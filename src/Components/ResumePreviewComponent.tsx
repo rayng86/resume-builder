@@ -8,10 +8,10 @@ import HeaderProfile from './ResumeHeaderProfileComponent';
 export const ResumePreview = ({ ...rest }: ResumeProps) => (
   <Grid className="resume-container">
     <HeaderProfile {...rest} />
-    <Cell size={7}>
+    <Cell size={8}>
       <ResumeProfessionalExperience professionalExperiences={rest.professionalExperiences} />
     </Cell>
-    <Cell size={5}>
+    <Cell size={4}>
       <ResumeSkillsComponent skills={rest.skills} />
     </Cell>
   </Grid>

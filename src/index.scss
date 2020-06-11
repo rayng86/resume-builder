@@ -26,7 +26,13 @@ code {
 }
 
 .k-pdf-export {
+  
   div {
     font-family: "Roboto", sans-serif;
   }
+
+  span.md-chip-text {
+    font-size: 10px;
+  }
+
 }
