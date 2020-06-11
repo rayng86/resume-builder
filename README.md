@@ -1,12 +1,11 @@
 # Resume Builder
 
-![image](https://user-images.githubusercontent.com/74542/84167053-bd14a900-aa43-11ea-8c5d-9b523122eac0.png)
+![image](https://user-images.githubusercontent.com/74542/84429909-eaee1f00-abf6-11ea-98ad-72e125118377.png)
 
 A simple resume building tool made with react I built over the weekend during my free time. Most of these types of services you have to pay to use and aren't free so decided to build my own.
 https://rayng86.github.io/resume-builder/
 
 ### TODOS:
-- ability to save as pdf
 - ability to save resume json config to load saved settings
 - ability to re-edit existing professional experience items.
 - More configurable resume sections (add phone, email, languages, awards, etc.) coming soon.
