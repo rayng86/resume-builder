@@ -16,7 +16,7 @@ export const ResumeProfessionalExperience = ({ professionalExperiences } : Resum
         <h3 style={{ marginBottom: 0 }}>{exp.jobPosition}</h3>
         <p>{exp.company}</p>
         <p style={{ display: 'flex' }}>
-          <FontIcon>date_range</FontIcon> {exp.startDate} - {exp.endDate ? exp.endDate : 'Present'}
+          {exp.startDate} - {exp.endDate ? exp.endDate : 'Present'}
         </p>
         <p>{exp.description}</p>
       </div>
