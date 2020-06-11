@@ -115,7 +115,8 @@ export const AddExperienceForm = ({ addExperience } : AddExperienceFormProps) =>
           style={{ width: '100%' }}
           label="Description"
           lineDirection="center"
-          rows={5}
+          rows={3}
+          maxLength={235}
           className="md-cell md-cell--bottom"
           value={description}
           // @ts-ignore

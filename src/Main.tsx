@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Grid, Cell, CardText, Card, CardTitle, Button } from 'react-md';
+import { PDFExport } from '@progress/kendo-react-pdf';
 import { ResumePreview } from './Components/ResumePreviewComponent';
 import { INITIAL_VALUES } from './constants';
 import { RenderResumeConfig } from './RenderResumeConfigProps';
@@ -7,13 +8,17 @@ import { EditSkills } from './Components/EditSkills';
 import { EditProfessionalExperience } from './Components/EditProfessionalExperience';
 import EditHeaderProfile from './Components/EditHeaderProfile';
 
+
 const Main = () => {
   // react hooks for basic information like name/job title
   const [firstName, setFirstNameState] = useState<string>(INITIAL_VALUES.firstName);
   const [middleName, setMiddleName] = useState<string>(INITIAL_VALUES.middleName);
   const [lastName, setLastName] = useState<string>(INITIAL_VALUES.lastName);
   const [jobTitle, setJobTitle] = useState<string>(INITIAL_VALUES.jobTitle);
-
+  
+  let resume = useRef();
+  const pdfFileName = `${firstName} ${lastName} Resume.pdf` 
+  
   // react hooks for skills
   const [skills, setSkills] = useState<Array<{ name: string }>>(INITIAL_VALUES.skills);
 
@@ -50,6 +55,11 @@ const Main = () => {
     document.body.removeChild(element);
   };
 
+  const exportPDF = () => {
+    //@ts-ignore
+    resume.save();
+};
+
   return (
     <Grid>
       <Cell size={4}>
@@ -78,18 +88,38 @@ const Main = () => {
           setExperience={setExperiences}
         />
         <EditSkills skills={skills} setSkills={setSkills} />
+        <RenderResumeConfig config={resumeConfig} />
+        <Button flat primary onClick={exportPDF}>Save PDF</Button>
+        <Button flat primary onClick={download}>Save JSON Config</Button>
       </Cell>
       <Cell size={8}>
-        <ResumePreview
-          firstName={firstName}
-          middleName={middleName}
-          lastName={lastName}
-          jobTitle={jobTitle}
-          skills={skills}
-          professionalExperiences={professionalExperiences}
-        />
-        <RenderResumeConfig config={resumeConfig} />
-        <Button flat primary onClick={download}>Save JSON Config</Button>
+        <div style={{ border: '1px solid lightgrey', width: '816px', height: '1056px', margin: '0 auto' }}>
+          <PDFExport paperSize={'Letter'}
+            fileName={pdfFileName}
+            title=""
+            subject=""
+            keywords="resume"
+            ref={(r: any) => resume = r}>
+                <div style={{
+                    height: '100%',
+                    width: '100%',
+                    padding: 'none',
+                    fontFamily: 'Helvetica; san-serif',
+                    backgroundColor: 'white',
+                    margin: 'auto',
+                    overflowX: 'hidden',
+                    overflowY: 'hidden'}}>
+                      <ResumePreview
+                        firstName={firstName}
+                        middleName={middleName}
+                        lastName={lastName}
+                        jobTitle={jobTitle}
+                        skills={skills}
+                        professionalExperiences={professionalExperiences}
+                      />
+                </div>
+          </PDFExport>
+        </div>
       </Cell>
     </Grid>
   );
