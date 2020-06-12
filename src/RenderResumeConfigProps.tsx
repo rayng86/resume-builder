@@ -9,7 +9,11 @@ type RenderResumeConfigProps = {
 
 export const RenderResumeConfig = ({ config }: RenderResumeConfigProps) => {
   const codeString = `${JSON.stringify(config, null, ' ')}`;
-  return (<SyntaxHighlighter language="json" style={tomorrowNightEighties} showLineNumbers>
-    {codeString}
-  </SyntaxHighlighter>);
+  return (
+    <div style={{ height: '300px', overflow: 'hidden', overflowY: 'auto' }}>
+      <SyntaxHighlighter language="json" style={tomorrowNightEighties} showLineNumbers>
+        {codeString}
+      </SyntaxHighlighter>
+    </div>
+  );
 };

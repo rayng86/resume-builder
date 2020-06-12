@@ -93,7 +93,7 @@ const Main = () => {
         <Button flat primary onClick={download}>Save JSON Config</Button>
       </Cell>
       <Cell size={8}>
-        <div style={{ border: '1px solid lightgrey', width: '816px', height: '1056px', margin: '0 auto' }}>
+        <div style={{ border: '1px solid lightgrey', background: 'white', width: '816px', height: '1056px', margin: '0 auto' }}>
           <PDFExport paperSize={'Letter'}
             fileName={pdfFileName}
             title=""
